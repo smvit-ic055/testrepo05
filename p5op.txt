@@ -1,0 +1,70 @@
+P5 op
+
+E:\Git\p5>git clone https://github.com/smvit-ic055/TestRepo.git
+Cloning into 'TestRepo'...
+remote: Enumerating objects: 39, done.
+remote: Counting objects: 100% (39/39), done.
+remote: Compressing objects: 100% (30/30), done.
+remote: Total 39 (delta 2), reused 0 (delta 0), pack-reused 0 (from 0 Receiving objects:  25% (10/39)
+Receiving objects: 100% (39/39), 12.79 KiB | 1.07 MiB/s, done.
+Resolving deltas: 100% (2/2), done.
+
+E:\Git\p5>cd TestRepo
+
+E:\Git\p5\TestRepo>git fetch
+remote: Enumerating objects: 5, done.
+remote: Counting objects: 100% (5/5), done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+Unpacking objects: 100% (3/3), 967 bytes | 17.00 KiB/s, done.
+From https://github.com/smvit-ic055/TestRepo
+   6a69a7b..35fcb32  main       -> origin/main
+
+E:\Git\p5\TestRepo>git rebase origin/main
+Successfully rebased and updated refs/heads/main.
+
+E:\Git\p5\TestRepo>git checkout -b fb
+Switched to a new branch 'fb'
+
+E:\Git\p5\TestRepo>git add .
+
+E:\Git\p5\TestRepo>git commit -m "updated locally"
+[fb 4874114] updated locally
+ 1 file changed, 1 insertion(+)
+
+E:\Git\p5\TestRepo>git fetch
+remote: Enumerating objects: 5, done.
+remote: Counting objects: 100% (5/5), done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+Unpacking objects: 100% (3/3), 972 bytes | 12.00 KiB/s, done.
+From https://github.com/smvit-ic055/TestRepo
+   35fcb32..f1c7143  main       -> origin/main
+
+E:\Git\p5\TestRepo>git rebase origin/main
+Auto-merging F1.txt
+CONFLICT (content): Merge conflict in F1.txt
+error: could not apply 4874114... updated locally
+hint: Resolve all conflicts manually, mark them as resolved with
+hint: "git add/rm <conflicted_files>", then run "git rebase --continue".
+hint: You can instead skip this commit: run "git rebase --skip".
+hint: To abort and get back to the state before "git rebase", run "git rebase --abort".
+Could not apply 4874114... updated locally
+
+E:\Git\p5\TestRepo>git add .
+
+E:\Git\p5\TestRepo>git rebase --continue
+[detached HEAD 46725a7] updated locally
+ 1 file changed, 2 insertions(+)
+Successfully rebased and updated refs/heads/fb.
+
+E:\Git\p5\TestRepo>git checkout main
+Switched to branch 'main'
+Your branch is behind 'origin/main' by 1 commit, and can be fast-forwarded.
+  (use "git pull" to update your local branch)
+
+E:\Git\p5\TestRepo>git merge fb
+Updating 35fcb32..46725a7
+Fast-forward
+ F1.txt | 3 +++
+ 1 file changed, 3 insertions(+)
